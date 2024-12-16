@@ -16,8 +16,7 @@ while True:
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     blurred_bin = cv2.GaussianBlur(hsv, (5,5), 2)
     bin_image = cv2.inRange(blurred_bin, low_green, up_green)
-    morph_close = cv2.morphologyEx(bin_image, cv2.MORPH_CLOSE, kernel)
-    edge = cv2.Canny(morph_close, 50, 150)
+    edge = cv2.Canny(bin_image, 50, 150)
     dilated_edges = cv2.dilate(edge, kernel, iterations=1)
 
       
@@ -29,7 +28,6 @@ while True:
 
     
     # Display the result
-    cv2.imshow("morph close", morph_close)
     cv2.imshow('morph open', bin_image)
     cv2.imshow('ori', frame)
     
